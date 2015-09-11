@@ -1,0 +1,25 @@
+﻿<div class="jumbotron">
+    <h1>运行正常</h1>
+    <p class="lead">看到这个界面，说明客户端中间层正在正常工作</p>
+    <p><a href="@Url.Action("Index", "Help", new { Area = "HelpPage" })" class="btn btn-primary btn-lg">查看接口列表</a></p>
+</div>
+ 
+<div class="row">
+    <div class="col-md-4">
+        <h2>查看历史版本</h2>
+        <p>
+            本页面中，你可以查看总共维护了多少个客户端版本,以及每个版本的说明
+        </p>
+        <p><a class="btn btn-default" href="@Url.Action("VersionList")">查看 &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>添加新版本</h2>
+        <p>添加新的客户端版本，你可以上传客户端文件，选择需要更新，删除的文件。</p>
+        <p><a class="btn btn-default" href="@Url.Action("Add")">添加 &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>客户端升级记录</h2>
+        <p>在这里可以查看客户端升级的记录，了解升级情况.</p>
+        <p><a class="btn btn-default" href="@Url.Action("UpgradeRecords")">查看 &raquo;</a></p>
+    </div>
+</div>

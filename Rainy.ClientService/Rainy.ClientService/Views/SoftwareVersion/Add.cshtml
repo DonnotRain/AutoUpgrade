@@ -1,0 +1,139 @@
+﻿@using Rainy.ClientService.Helpers;
+@model UpgradeFileInfo
+@{
+    ViewBag.Title = "添加新版本";
+}
+
+@section scripts{
+    <script src="~/Scripts/jQuery-File-Upload/JavaScript-Load-Image-1.14.0/js/load-image.all.min.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/JavaScript-Templates-2.5.5/js/tmpl.min.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/Canvas-to-Blob/canvas-to-blob.min.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/js/jquery.fileupload.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/js/jquery.fileupload-process.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/js/jquery.fileupload-image.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/js/jquery.fileupload-audio.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/js/jquery.fileupload-video.js"></script>
+    <script src="~/Scripts/jQuery-File-Upload/js/jquery.fileupload-validate.js"></script>
+    @*<script src="~/Scripts/jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>*@
+    <script src="~/Scripts/jstree/dist/jstree.min.js"></script>
+    <script src="~/Scripts/AddClientVersion.js"></script>
+
+}
+
+@section styles{
+    <link href="~/Scripts/jQuery-File-Upload/css/style.css" rel="stylesheet" />
+    <link href="~/Scripts/jQuery-File-Upload/css/jquery.fileupload.css" rel="stylesheet" />
+    <link href="~/Scripts/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .jstree-icon {
+            color: #DBC056;
+        }
+    </style>
+}
+<h2>添加新版本</h2>
+
+@using (Html.BeginForm("Add", "SoftwareVersion", FormMethod.Post, new { @class = "form-horizontal", id = "mainForm" }))
+{
+
+    <div class="form-group versionNO">
+        <label class="col-md-3 control-label required">版本号</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.VersionName, new { @class = "form-control required", id = "VersionName", placeholder = "版本号" })
+            <span class="help-block">
+                <a href="javascript:void(0);" onclick="ConfirmVersioNO();" class="btn btn-default btn-success confirmNO">确认版本号</a>
+                <a href="javascript:void(0);" onclick="RenameVersionNO();" style="display:none" class="btn btn-default btn-warning resetNO">重填版本号</a>
+            </span>
+        </div>
+    </div>
+
+    <div class="form-group otherGroup">
+        <label class="col-md-3 control-label">更新内容：</label>
+        <div class="col-md-9">
+            <textarea type="text" rows="6" id="Description" class="form-control" placeholder="列出此版本更新内容"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group otherGroup">
+        <label class="col-md-3 control-label">是否作为最新版本</label>
+        <div class="col-md-9">
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" id="AsLastestVersion" placeholder="最新版本" />作为最新版本
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group otherGroup">
+        <label class="col-md-3 control-label required">程序压缩包上传</label>
+        <div class="col-md-9">
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <span class="btn btn-success fileinput-button">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        <span>选择压缩包</span>
+
+                        <!-- The file input field used as target for the file upload widget -->
+                        <input id="fileupload" type="file" name="files[]">
+                    </span>
+                    <span class="help-block">
+                        压缩包直接包含客户端文件,无需根目录
+                    </span>
+
+                    <!-- The global progress bar -->
+                    <div id="progress" class="progress">
+                        <div class="progress-bar progress-bar-success"></div>
+                    </div>
+                    <!-- The container for the uploaded files -->
+                    <div id="files" class="files"></div>
+
+                </div> <!-- /.col-lg-6 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group otherGroup">
+        <label class="col-md-3 control-label">需要更新的文件</label>
+        <div class="col-md-9">
+            <div class="scroller" @*style="height:300px"*@ data-always-visible="1" data-rail-visible="1" data-rail-color="red" data-handle-color="green">
+                <div id="functionsTree">
+                </div>
+                <span class="help-block">
+                    选择需要添加或更新的文件
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group otherGroup">
+        <label class="col-md-3 control-label required">需要删除的文件路径</label>
+        <div class="col-md-9">
+
+            <div class="row" style="margin-bottom:10px">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input type="text" id="FileNameToRemove" class="form-control" placeholder="文件路径">
+                        <a class="btn btn-default input-group-addon" href="javascript:void(0);" onclick="AddRemoveFile();">添加</a>
+
+                        <a class="btn btn-default input-group-addon" href="javascript:void(0);" onclick="ClearFile();">清除</a>
+                    </div>
+                </div> <!-- /.col-lg-6 -->
+            </div>
+            <span class="help-block">
+                主目录内相对路径如client.exe 或 images/1.jpg
+            </span>
+            <select class="form-control select2me" multiple id="FilesToRemove" style="width:300px"></select>
+        </div>
+    </div>
+
+    <div class="form-group otherGroup">
+        <label class="col-md-3 control-label required"></label>
+        <div class="col-sm-offset-3 col-md-9">
+            <button type="button" id="btnSave" class="btn btn-default btn-success">确认保存</button>
+        </div>
+    </div>
+}

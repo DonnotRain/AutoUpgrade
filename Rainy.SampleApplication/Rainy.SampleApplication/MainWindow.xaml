@@ -1,0 +1,44 @@
+﻿<Window x:Class="Rainy.SampleApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Rainy.SampleApplication"
+        mc:Ignorable="d"    Background="#36444F"  WindowStyle="ToolWindow"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="69*"/>
+            <RowDefinition Height="46"/>
+            <RowDefinition Height="46"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="56*"/>
+            <RowDefinition Height="65*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*"/>
+            <ColumnDefinition Width="310"/>
+            <ColumnDefinition Width="17*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1"  Margin="0,0,0,0" Grid.Row="2">
+            <ComboBox FontSize="18" Margin="0" BorderBrush="#FFC94949"  BorderThickness="0,0,0,1" Padding="60,14,0,0" Text="" IsEditable="True" x:Name="txtUserName"   TabIndex="1"/>
+            <TextBlock HorizontalAlignment="Left" Height="30" VerticalAlignment="Top"   Margin="7,15,0,0" Text="用户名：" />
+
+            <Border BorderThickness="0,0,0,1" BorderBrush="#E6E4E1" VerticalAlignment="Bottom" Margin="0,0,0,0"/>
+        </Grid> 
+        <Grid Grid.Column="1" Margin="0" Grid.Row="3" >
+            <PasswordBox Padding="60,12,0,0"  Password=""  FontSize="16" BorderThickness="0" x:Name="txtUserPwd"    TabIndex="2"  />
+            <TextBlock HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Margin="8,15,0,0" Text="密    码："/>
+        </Grid>
+
+        <Button Margin="0,5,0,0" x:Name="btnLogin" Content="登 录"   FontSize="16" HorizontalAlignment="Left" VerticalAlignment="Top" Width="310" Click="btnLogin_Click" TabIndex="3" Grid.Column="1" Height="50" Grid.Row="5"  />
+
+        <TextBlock x:Name="tbInfo" Foreground="#7A8693"  Margin="0,23,0,0" TextAlignment="Center" TextWrapping="Wrap" FontSize="14" Text="@天不下雨" Grid.ColumnSpan="3" VerticalAlignment="Top" Grid.Column="0" Grid.Row="6"/>
+        <TextBlock x:Name="tbErrorInfo" Margin="0,5,0,0" TextAlignment="Center" HorizontalAlignment="Left" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="420"  Grid.Row="6" Grid.ColumnSpan="3" Foreground="#FFDC4141" />
+
+        <TextBlock Grid.Column="1" Foreground="White" Text="登录" FontSize="48" HorizontalAlignment="Center" Height="54"  Margin="0,0,0,0" Grid.Row="1" VerticalAlignment="Top"  />
+        <!--<TextBlock Text="&#xf0c2;" Style="{DynamicResource FontAwesome}" Foreground="Blue"         />-->
+    </Grid>
+
+</Window>

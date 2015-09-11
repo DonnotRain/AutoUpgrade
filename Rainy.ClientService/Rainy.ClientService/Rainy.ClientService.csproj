@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{45C1AE6E-C55D-4A0A-9A56-D38A2A37F7EA}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Rainy.ClientService</RootNamespace>
+    <AssemblyName>Rainy.ClientService</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SharpCompress, Version=0.10.3.0, Culture=neutral, PublicKeyToken=beaf6f427e128133, processorArchitecture=MSIL">
+      <HintPath>..\packages\sharpcompress.0.11.1\lib\net40\SharpCompress.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\CollectionModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ComplexTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\DictionaryModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\EnumValueDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\IModelDocumentationProvider.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\KeyValuePairModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelDescriptionGenerator.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameAttribute.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ModelNameHelper.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterAnnotation.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\ParameterDescription.cs" />
+    <Compile Include="Areas\HelpPage\ModelDescriptions\SimpleTypeModelDescription.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="ClientUpgrade\ClientVersionController.cs" />
+    <Compile Include="ClientUpgrade\SoftwareVersionController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CommonToolkit.cs" />
+    <Compile Include="Helpers\FileOrDirectoryNode.cs" />
+    <Compile Include="Helpers\UpgradeVersions.cs" />
+    <Compile Include="Helpers\VersionService.cs" />
+    <Compile Include="Helpers\WebHelpers.cs" />
+    <Compile Include="Models\AddVersionModel.cs" />
+    <Compile Include="Models\jsTreeNode.cs" />
+    <Compile Include="Models\UploadFileResult.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\DevExpress.Data.v14.2.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\DevExpress.Mvvm.v14.2.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\DevExpress.Printing.v14.2.Core.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\DevExpress.Xpf.Controls.v14.2.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\DevExpress.Xpf.Core.v14.2.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\DevExpress.Xpf.LayoutControl.v14.2.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\DevExpress.Xpf.Ribbon.v14.2.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\DevExpress.Xpf.Themes.Office2013.v14.2.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\FastReport.Bars.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\FastReport.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\FastReport.Editor.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\GalaSoft.MvvmLight.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\GalaSoft.MvvmLight.Extras.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\GalaSoft.MvvmLight.Extras.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\GalaSoft.MvvmLight.Platform.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\GalaSoft.MvvmLight.Platform.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\GalaSoft.MvvmLight.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\Gma.QrCodeNet.Encoding.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.ACard.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.ClientService.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.Data.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.exe" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.Models.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.Report.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.Ticket.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.vshost.exe" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.ClientTools.Card.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.ClientTools.Printer.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.ClientTools.QRCode.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.WPF.UI.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JZT30Dev.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\LayoutStyle.XML" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\MahApps.Metro.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\MahApps.Metro.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\Microsoft.Practices.ServiceLocation.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\Microsoft.Practices.ServiceLocation.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\Newtonsoft.Json.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\Newtonsoft.Json.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\PrinterTemplates\Barcodes\LF000033.png" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\PrinterTemplates\Barcodes\LF000034.png" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\PrinterTemplates\Barcodes\LF000035.png" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\StoredData\LocalData.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\System.Net.Http.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\System.Net.Http.Formatting.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\System.Net.Http.Formatting.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\System.Net.Http.WebRequest.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\System.Net.Http.WebRequest.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\System.Net.Http.xml" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\System.Windows.Interactivity.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\WPFMediaKit.dll" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\Xceed.Wpf.Toolkit.dll" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Scripts\AddClientVersion.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\SimpleTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ModelDescriptionLink.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\KeyValuePairModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\EnumTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\DictionaryModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ComplexTypeModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="ClientUpgrade\UpgradeConfig.json" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\Data\public.key" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.application" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.exe.config" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.exe.manifest" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.Ticket.dll.config" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.vshost.application" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.vshost.exe.config" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\JuYing.Client.vshost.exe.manifest" />
+    <Content Include="ClientUpgrade\Versions\1.0.235\PrinterTemplates\TicketTemp.frx" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jQuery-File-Upload\Canvas-to-Blob\canvas-to-blob.min.js" />
+    <Content Include="Scripts\jQuery-File-Upload\css\jquery.fileupload-noscript.css" />
+    <Content Include="Scripts\jQuery-File-Upload\css\jquery.fileupload-ui-noscript.css" />
+    <Content Include="Scripts\jQuery-File-Upload\css\jquery.fileupload-ui.css" />
+    <Content Include="Scripts\jQuery-File-Upload\css\jquery.fileupload.css" />
+    <Content Include="Scripts\jQuery-File-Upload\css\style.css" />
+    <Content Include="Scripts\jQuery-File-Upload\img\loading.gif" />
+    <Content Include="Scripts\jQuery-File-Upload\img\progressbar.gif" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\.gitignore" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\css\demo.css" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\css\vendor\Jcrop.gif" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\css\vendor\jquery.Jcrop.css" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\Gruntfile.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\index.html" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\js\demo.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\js\load-image-exif-map.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\js\load-image-exif.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\js\load-image-ios.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\js\load-image-meta.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\js\load-image-orientation.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\js\load-image.all.min.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\js\load-image.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\js\vendor\jquery.Jcrop.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\test\index.html" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\test\test.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\.gitignore" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\css\demo.css" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\Gruntfile.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\index.html" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\js\compile.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\js\demo.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\js\runtime.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\js\tmpl.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\js\tmpl.min.js" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\test\index.html" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\test\test.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\app.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\cors\jquery.postmessage-transport.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\cors\jquery.xdr-transport.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.fileupload-angular.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.fileupload-audio.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.fileupload-image.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.fileupload-jquery-ui.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.fileupload-process.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.fileupload-validate.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.fileupload-video.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.fileupload.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\jquery.iframe-transport.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\main.js" />
+    <Content Include="Scripts\jQuery-File-Upload\js\vendor\jquery.ui.widget.js" />
+    <Content Include="Scripts\jstree\dist\jstree.js" />
+    <Content Include="Scripts\jstree\dist\jstree.min.js" />
+    <Content Include="Scripts\jstree\dist\themes\default\32px.png" />
+    <Content Include="Scripts\jstree\dist\themes\default\32px_line.png" />
+    <Content Include="Scripts\jstree\dist\themes\default\32px_original.png" />
+    <Content Include="Scripts\jstree\dist\themes\default\40px.png" />
+    <Content Include="Scripts\jstree\dist\themes\default\style.css" />
+    <Content Include="Scripts\jstree\dist\themes\default\style.min.css" />
+    <Content Include="Scripts\jstree\dist\themes\default\throbber.gif" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ViewClientVersion.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\bower.json" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\package.json" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Load-Image-1.14.0\README.md" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\.jshintrc" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\bower.json" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\package.json" />
+    <Content Include="Scripts\jQuery-File-Upload\JavaScript-Templates-2.5.5\README.md" />
+    <Content Include="Scripts\jstree\jstree.jquery.json" />
+    <Content Include="Scripts\jstree\LICENSE-MIT" />
+    <Content Include="Scripts\jstree\README.md" />
+    <Content Include="Views\SoftwareVersion\Add.cshtml" />
+    <Content Include="Views\SoftwareVersion\Detail.cshtml" />
+    <Content Include="Views\SoftwareVersion\Index.cshtml" />
+    <Content Include="Views\SoftwareVersion\UpgradeRecords.cshtml" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>64192</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:64192/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>此项目引用这台计算机上缺少的 NuGet 程序包。使用 NuGet 程序包还原可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.0.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

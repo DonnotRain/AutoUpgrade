@@ -1,0 +1,84 @@
+﻿@model Rainy.ClientService.Helpers.UpgradeFileInfo
+@{
+    ViewBag.Title = "版本"+Model.VersionName;
+}
+
+@section scripts{
+    <script type="text/javascript">
+        window.VersionName = "@Model.VersionName";
+
+    </script>
+    <script src="~/Scripts/jstree/dist/jstree.min.js"></script>
+    <script src="~/Scripts/ViewClientVersion.js"></script>
+
+}
+
+@section styles{
+    <link href="~/Scripts/jstree/dist/themes/default/style.min.css" rel="stylesheet" />
+    <style type="text/css">
+        .jstree-icon {
+            color: #DBC056;
+        }
+    </style>
+}
+
+
+@if (Model == null)
+{ <hr />
+    <div class="alert alert-danger" role="alert">未找到相关版本信息，请检查版本号参数</div>
+}
+else
+{
+    <h2>版本详情- @Model.VersionName</h2>
+
+    <hr />
+    <div class="row">
+        <div class="form-horizontal">
+            <div class="form-group otherGroup">
+                <label class="col-md-3 control-label">版本</label>
+                <div class="col-md-9">
+                    <h3>@Model.VersionName <small>@Model.LastUpdateTime</small></h3> 
+                </div>
+            </div>
+
+
+            <div class="form-group otherGroup">
+                <label class="col-md-3 control-label">内容说明：</label>
+                <div class="col-md-9">
+                    @Model.Description
+                </div>
+            </div>
+
+            <div class="form-group otherGroup">
+                <label class="col-md-3 control-label">是否作为最新版本</label>
+                <div class="col-md-9">
+                    <div class="checkbox">
+                        <label>
+                            @(Model.IsLastVersion ? "是" : "否")
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group otherGroup">
+                <label class="col-md-3 control-label">需要更新的文件</label>
+                <div class="col-md-9">
+                    <div class="scroller" @*style="height:300px"*@ data-always-visible="1" data-rail-visible="1" data-rail-color="red" data-handle-color="green">
+                        <div id="functionsTree">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group otherGroup">
+                <label class="col-md-3 control-label required">需要删除的文件路径</label>
+                <div class="col-md-9">
+ 
+ 
+                </div>
+            </div>
+
+        </div>
+    </div>
+}

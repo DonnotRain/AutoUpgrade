@@ -1,0 +1,65 @@
+﻿@model Rainy.ClientService.Helpers.UpgradeVersions
+@{
+    ViewBag.Title = "客户端版本列表";
+    var lastVersion = Model.Versions.SingleOrDefault(m => m.IsLastVersion);
+    var oldVersions = Model.Versions.Where(m => !m.IsLastVersion);
+}
+
+<h2>全部版本</h2>
+<div class="row">
+    <div class="col-md-6">
+        <a class="btn btn-default btn-sm btn-success" href="@Url.Action("Add")"><span class="hidden-480">添加</span> </a>
+    </div>
+</div>
+<hr />
+<table class="table table-striped table-bordered table-hover" id="roleListTable">
+    <thead>
+        <tr>
+            <th class="Name">版本类型</th>
+            <th class="Name">版本号</th>
+            <th class="Note">更新时间</th>
+            <th class="IsEnabled">版本描述</th>
+            <th class="IsEnabled">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (lastVersion != null)
+        {
+            <tr>
+                <td style="color:green;">最新版本</td>
+
+                <td style="color:green">@lastVersion.VersionName</td>
+                <td>@lastVersion.LastUpdateTime</td>
+                <td>@lastVersion.Description</td>
+                <td>
+                    <a class="btn btn-default btn-sm btn-success" href="@Url.Action("Detail", new { version =lastVersion.VersionName })"><span class="hidden-480">详情</span> </a>
+                    <a class="btn btn-default btn-sm btn-success" href="@Url.Action("Add", new { version = lastVersion.VersionName })"><span class="hidden-480">编辑</span> </a>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td style="color:green">最新版本</td>
+
+                <td colspan="4" style="color:red;text-align:center">未配置最新版本</td>
+
+            </tr>
+        }
+
+        @foreach (var version in oldVersions)
+        {
+            <tr>
+                <td style="color:darkviolet">历史版本</td>
+
+                <td style="color:darkviolet">@version.VersionName</td>
+                <td>@version.LastUpdateTime</td>
+                <td>@version.Description</td>
+                <td>
+                    <a class="btn btn-default btn-sm btn-success" href="@Url.Action("Detail", new { version = version.VersionName })"><span class="hidden-480">详情</span> </a>
+                </td>
+            </tr>
+        }
+
+    </tbody>
+</table>
