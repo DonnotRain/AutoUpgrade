@@ -1,27 +1,22 @@
 # AutoUpgrade #
 
 <h2 class="tagline">.NET应用程序自动升级工具</h2>
-###Provide  .NET Applications ability to upgrade version automatically
+
 AutoUpgrade 是 一个为.NET桌面程序提供自动升级支持的组件或者说解决方案。
 分为服务端模块和客户端模块两部分
 此组件基于.Net Framework 4.5开发，不支持低于此版本的.Net Framework。
 服务端由ASP.NET MVC5和WEB API 2支持。
-客户端为WPF窗体
+客户端组件为WPF窗体
 
-project but for use with non-dynamic [POCO](http://en.wikipedia.org/wiki/Plain_Old_CLR_Object) objects.  It came about because I was finding
-many of my projects that used SubSonic/Linq were slow or becoming mixed bags of Linq and [CodingHorror](http://www.subsonicproject.com/docs/CodingHorror).
+有如下特点:
 
-I needed a data acess layer that was:
+* 扩展性强，可上传压缩包后选择文件
+* 版本变更清晰
+* 可记录升级情况
+* 针对多客户端  
+* 低侵入性，不影响原程序设计  
 
-* tiny
-* fast
-* easy to use and similar to SubSonic
-* could run on .NET 3.5 and/or Mono 2.6 (ie: no support for dynamic).  
+可远程维护客户端版本，客户端获取到更新后弹出升级框，显示版本相关信息，以及升级进度
+Web端上传版本，可选择替换，删除，忽略文件
+客户端升级会被记录，方便远程查看客户端版本信息
 
-Rob's claim of Massive being only 400 lines of code intruiged me and I wondered if something similar could be done without dynamics.
-
-So, what's with the name?  Well if Massive is massive, this is "Peta" massive (at about 1,200 lines it's triple the size after all) and since it 
-works with "Poco"s ... "PetaPoco" seemed like a fun name!!
-
-
-See here - <http://www.toptensoftware.com/petapoco> - for full details.
