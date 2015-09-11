@@ -1,7 +1,7 @@
 # AutoUpgrade #
 
-<h2 class="tagline">.NET应用程序自动升级工具 Provide  .NET Applications ability to upgrade version automatically</h2>
-
+<h2 class="tagline">.NET应用程序自动升级工具</h2>
+###Provide  .NET Applications ability to upgrade version automatically
 AutoUpgrade 是 一个为.NET桌面程序提供自动升级支持的组件或者说解决方案。
 分为服务端模块和客户端模块两部分
 此组件基于.Net Framework 4.5开发，不支持低于此版本的.Net Framework。
