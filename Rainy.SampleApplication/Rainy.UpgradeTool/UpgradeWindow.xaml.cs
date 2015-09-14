@@ -1,11 +1,11 @@
-﻿ 
-using Rainy.UpgradeTool; 
+﻿
+using Rainy.UpgradeTool;
 using System;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
-
+using System.Windows.Media;
 
 namespace RainyTools.UpgradeTool
 {
@@ -24,6 +24,8 @@ namespace RainyTools.UpgradeTool
 
         async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+            tbkCurrentVersion.Text = "当前客户端版本:" + UpgradeSettings.Instance["CurrentVersion"];
+
             this.MouseDown += MainWindow_MouseDown;
 
             tbkUpgradeInfo.Text = "检查更新中...";
@@ -37,6 +39,11 @@ namespace RainyTools.UpgradeTool
 
         private async void ExcuteUpgrade()
         {
+            prgUpgrade.Maximum = _lastestVersionInfo.FilesSize;
+            prgUpgrade.Value = 0;
+            tbkVersionInfo.Text = _lastestVersionInfo.Description;
+            tbkTragetVersion.Text = "升级到最新版本：" + _lastestVersionInfo.VersionName;
+
             //删除需要删除的数据
             if (_lastestVersionInfo.FileToDelete != null)
                 foreach (var fileName in _lastestVersionInfo.FileToDelete)
@@ -48,39 +55,48 @@ namespace RainyTools.UpgradeTool
 
             var client = UpgradeSettings.Instance.GetUpgradeHttpClient();
 
-            _lastestVersionInfo.FilesToUpgrade.ForEach(async fileName =>
-           {
-               var currentIndex = _lastestVersionInfo.FilesToUpgrade.IndexOf(fileName) + 1;
-               tbkUpgradeInfo.Text = "更新中，进度 " + currentIndex.ToString() + "/" + _lastestVersionInfo.FilesToUpgrade.Count.ToString() + " ( " + Math.Round((double)currentIndex / (double)_lastestVersionInfo.FilesToUpgrade.Count * 100) + "% )";
+            foreach (var fileName in _lastestVersionInfo.FilesToUpgrade)
+            {
+                var currentIndex = _lastestVersionInfo.FilesToUpgrade.IndexOf(fileName) + 1;
 
-               tbkFileUpgrading.Text = fileName;
+                tbkUpgradeInfo.Text = "更新中，进度 第" + currentIndex.ToString() + "个文件 / 共" + _lastestVersionInfo.FilesToUpgrade.Count.ToString() + "个文件 ( " + Math.Round(prgUpgrade.Value / prgUpgrade.Maximum * 100) + "% )";
 
-               var response = await client.GetAsync("api/ClientVersion/File?fileName=" + fileName);
+                tbkFileUpgrading.Text = fileName;
 
-               var fileStream = await response.Content.ReadAsStreamAsync();
+                var response = await client.GetAsync("api/ClientVersion/File?fileName=" + fileName);
 
-               var file = new FileInfo(System.IO.Path.Combine(UpgradeSettings.GetBaseDirectory(), fileName));
-               if (!file.Directory.Exists)
-                   file.Directory.Create();
+                var fileStream = await response.Content.ReadAsStreamAsync();
 
-               var stream = file.OpenWrite();
+                var file = new FileInfo(System.IO.Path.Combine(UpgradeSettings.GetBaseDirectory(), fileName));
+                if (!file.Directory.Exists)
+                    file.Directory.Create();
 
-               await fileStream.CopyToAsync(stream);
-               stream.Close();
+                var stream = file.OpenWrite();
 
-               if (currentIndex == _lastestVersionInfo.FilesToUpgrade.Count)
-               {
-                   tbkUpgradeInfo.Text = "更新完成";
-                   tbkFileUpgrading.Text = "无";
-                   prgUpgrade.Value = 100;
-                   FinishUpgrade();
-               }
-               else
-               {
-                   prgUpgrade.Value = Math.Round((double)(currentIndex + 1) / (double)_lastestVersionInfo.FilesToUpgrade.Count * 100);
-               }
+                await fileStream.CopyToAsync(stream);
 
-           });
+                prgUpgrade.Value += stream.Length / 1024;
+
+                stream.Close();
+
+                if (currentIndex == _lastestVersionInfo.FilesToUpgrade.Count)
+                {
+
+                    if (_lastestVersionInfo != null)
+                    {
+                        //更新配置文件
+                        UpgradeSettings.Instance["CurrentVersion"] = _lastestVersionInfo.VersionName;
+                        UpgradeSettings.Instance["LastUpdateTime"] = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    }
+
+                    tbkFileUpgrading.Text = "无"; 
+                    tbkUpgradeInfo.Text = "更新完成，进度 第" + currentIndex.ToString() + "个文件 / 共" + _lastestVersionInfo.FilesToUpgrade.Count.ToString() + "个文件 ( " + Math.Round(prgUpgrade.Value / prgUpgrade.Maximum * 100) + "% )";
+                    tbkUpgradeInfo.Foreground = new SolidColorBrush(Colors.White);
+
+                    textBlock.Visibility = Visibility.Visible;
+                    button.Visibility = Visibility.Visible;
+                }
+             }
         }
 
         private void MainWindow_MouseDown(object sender, MouseButtonEventArgs e)
@@ -93,12 +109,6 @@ namespace RainyTools.UpgradeTool
 
         private void FinishUpgrade()
         {
-            if (_lastestVersionInfo != null)
-            {
-                //更新配置文件
-                UpgradeSettings.Instance["CurrentVersion"] = _lastestVersionInfo.VersionName;
-                UpgradeSettings.Instance["LastUpdateTime"] = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            }
 
             Process.Start(System.IO.Path.Combine(UpgradeSettings.GetBaseDirectory(), "Rainy.SampleApplication.exe"));
 
@@ -113,6 +123,11 @@ namespace RainyTools.UpgradeTool
                 //Application.Current.Shutdown();
                 return;
             }
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            FinishUpgrade();
         }
     }
 }

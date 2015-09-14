@@ -9,7 +9,7 @@ function SaveForm() {
 
     var formData = {
         VersionName: $("#VersionName").val().trim(),
-        Description: $("#Description").text(),
+        Description: $("#Description").val(),
         IsLastVersion: $("#AsLastestVersion").prop("checked"),
         FileToDelete: filesTodelete,
         FilesToUpgrade: $('#functionsTree').jstree("get_selected")

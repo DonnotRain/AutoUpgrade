@@ -1,6 +1,6 @@
 ﻿using Rainy.ClientService.Helpers;
 using Rainy.ClientService.Models;
- 
+
 using SharpCompress.Common;
 using SharpCompress.Reader;
 using System;
@@ -127,7 +127,7 @@ namespace Rainy.ClientService.ClientUpgrade
                         cVersion.FilesToUpgrade.Add(fileRelativeName);
 
                         var fileStream = fileInfo.OpenRead();
-                        cVersion.FilesSize += fileStream.Length;
+                        cVersion.FilesSize += fileStream.Length / 1024;
                         fileStream.Close();
                     }
                 }
@@ -152,7 +152,7 @@ namespace Rainy.ClientService.ClientUpgrade
         [HttpPost]
         public ActionResult GetUpgradeFileNodes(string versionName)
         {
-            var nodes = GetChildrenNodes(new DirectoryInfo(Server.MapPath(FILEENTRYPATH + "/" + versionName)),false);
+            var nodes = GetChildrenNodes(new DirectoryInfo(Server.MapPath(FILEENTRYPATH + "/" + versionName)), false);
 
             return Json(nodes);
         }
@@ -190,7 +190,7 @@ namespace Rainy.ClientService.ClientUpgrade
                 LoopDeleteFile(directory.FullName, shouldKeepFiles);
             }
 
-            if (directoryInfo.GetFiles().Count() == 0&& directoryInfo.GetDirectories().Count()==0)
+            if (directoryInfo.GetFiles().Count() == 0 && directoryInfo.GetDirectories().Count() == 0)
             {
                 directoryInfo.Delete();
             }
@@ -397,7 +397,7 @@ namespace Rainy.ClientService.ClientUpgrade
         //}
 
         [NonAction]
-        private List<JsTreeNode> GetChildrenNodes(DirectoryInfo directoryInfo,bool isSelected=true)
+        private List<JsTreeNode> GetChildrenNodes(DirectoryInfo directoryInfo, bool isSelected = true)
         {
             var files = directoryInfo.GetFiles();
             var directories = directoryInfo.GetDirectories();
